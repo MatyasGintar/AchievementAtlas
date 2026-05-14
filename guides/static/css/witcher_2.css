@@ -1,0 +1,145 @@
+/* ====================
+   ⚔️ THEME: WITCHER 2
+   ==================== */
+
+body {
+    background: url("/static/images/witcher2_bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #d6d6d6;
+    font-family: "Cinzel", serif;
+    letter-spacing: 0.5px;
+    
+}
+
+/* dark cold overlay feel */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(16, 16, 16, 0.35),
+        rgba(2, 2, 2, 0.596)
+    );
+    pointer-events: none;
+}
+
+/* ============================================
+   🔍 INPUT (steel UI vibe)
+   ============================================ */
+
+#achFilter {
+    background: rgba(10, 15, 20, 0.85);
+    border: 1px solid rgba(120, 140, 150, 0.35);
+    color: #d6d6d6;
+    font-family: "Cinzel", serif;
+}
+
+#achFilter:focus {
+    border-color: rgba(160, 180, 190, 0.7);
+    box-shadow: 0 0 10px rgba(120, 140, 150, 0.25);
+}
+
+/* ============================================
+   🎛️ BUTTON (military UI feel)
+   ============================================ */
+
+#filterToggle {
+    background: linear-gradient(180deg, #1a1f24, #0f1418);
+    border: 1px solid rgba(120, 140, 150, 0.4);
+    font-family: "Cinzel", serif;
+}
+
+#filterToggle:hover {
+    border-color: rgba(200, 220, 230, 0.6);
+}
+
+/* ============================================
+   📌 THEME: DROPDOWN MENU COLORS
+   ============================================ */
+
+.hidden-menu {
+    background: rgba(0,0,0,0.95);
+    border: 1px solid rgba(120, 140, 150, 0.4);
+}
+
+/* ============================================
+   📦 LIST CONTAINER (iron frame)
+   ============================================ */
+
+.ach-list {
+    border: 1px solid rgba(120, 140, 150, 0.25);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+}
+
+/* ============================================
+   🏆 TITLE (cold authority)
+   ============================================ */
+
+.ach-title {
+    color: #c9d6df;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(120, 140, 150, 0.25);
+    padding-bottom: 6px;
+}
+
+/* ============================================
+   🎴 CARD (stone/steel slabs)
+   ============================================ */
+
+.ach-item {
+    background: linear-gradient(90deg, #0b0f12, #11181d);
+    border-left: 3px solid rgba(140, 160, 170, 0.4);
+    transition: 0.25s ease;
+}
+
+.ach-item.locked {
+    filter: saturate(0);
+}
+
+.ach-item.unlocked {
+    background: linear-gradient(90deg, #0b0f12, #11181d);
+    border-left: 3px solid rgba(140, 160, 170, 0.4);
+    transition: 0.25s ease;
+}
+
+.ach-item:hover {
+    transform: translateX(4px);
+    border-left: 3px solid rgba(200, 220, 230, 0.8);
+    background: linear-gradient(90deg, #0f151a, #151c22);
+}
+
+/* ============================================
+   🏷️ TYPE BADGE (cold tag)
+   ============================================ */
+
+.ach-type {
+    background: rgba(20, 25, 30, 0.9);
+    border: 1px solid rgba(120, 140, 150, 0.35);
+    color: #9fb3bd;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+/* ============================================
+   🖼️ ICON (muted steel)
+   ============================================ */
+
+.ach-icon {
+    background: #0c1115;
+    border: 1px solid rgba(120, 140, 150, 0.3);
+    filter: grayscale(30%);
+}
+
+/* ============================================
+   ✍️ TEXT (cold readability)
+   ============================================ */
+
+.ach-text h4 {
+    color: #d7e1e7;
+}
+
+.ach-text p {
+    color: #9aa8b1;
+}

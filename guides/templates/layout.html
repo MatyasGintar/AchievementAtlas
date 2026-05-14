@@ -1,0 +1,55 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="#">
+                 <span class="logo">AchievementAtlas</span></a>
+                <a href="{% url 'games' %}">Games</a>
+                <a href="#">Guides</a>
+            </div>
+
+            <div class="nav-right">
+    {% if user.is_authenticated %}
+        <span class="user">Ahoj, {{ user.username }}!</span>
+        
+        <form method="post" action="{% url 'account_logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn" style="border:none; cursor:pointer;">Odhlásit</button>
+        </form>
+    {% else %}
+        <form action="{% provider_login_url 'steam' %}" method="post" style="margin: 0;">
+            {% csrf_token %}
+            <button type="submit" class="btn" style="display: flex; align-items: center; gap: 8px; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">
+                <i class="fab fa-steam"></i> Přihlásit přes Steam
+            </button>
+        </form>
+    {% endif %}
+</div>
+        </nav>
+    </header>
+
+    <main>
+    {% block content %}{% endblock %}
+    </main>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

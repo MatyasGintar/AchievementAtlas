@@ -1,0 +1,148 @@
+{% extends "layout.html" %} 
+{% load static %} 
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/'|add:game.theme|add:'.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=trophy"/>
+{% endblock %}
+ 
+{% block content %}
+<div class="game-card-detail">
+  <div class="game-header">
+    <div class="game-header-left">
+      <img src="{{ game.cover_url }}" alt="Cover" class="game-cover" />
+      <div class="game-title-group">
+        <h1>{{ game.name }}</h1>
+        <div class="stat-badge">
+          <span>{{ game.release_year }}</span>
+          <span style="color: #475569; margin: 0 3px;">•</span>
+          
+          {{ game.total_achievements }}
+          <i class="fas fa-trophy"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-meta-blocks">
+      <div class="detail-item">
+        <span class="detail-label">
+          {% if game.genres.all|length > 1 %}Genres
+          {% else %}Genre{% endif %}
+        </span>
+        <div class="detail-tags-column">
+          {% for genre in game.genres.all %}
+          <span class="genre-tag">{{ genre.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-label">
+          {% if game.developers.all|length > 1 %}Developers 
+          {% else %}Developer{% endif %}
+        </span>
+        <div class="detail-tags-column">
+          {% for dev in game.developers.all %}
+          <span class="company-tag">{{ dev.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      
+
+      <div class="detail-item">
+        <span class="detail-label">
+          {% if game.publishers.all|length > 1 %}Publishers 
+          {% else %}Publisher{% endif %}
+        </span>
+        <div class="detail-tags-column">
+          {% for pub in game.publishers.all %}
+          <span class="company-tag">{{ pub.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-info">
+      <span class="progress-title">Tvůj postup</span>
+      <span class="progress-count">
+        {{ unlocked_ids|length }} / {{ game.total_achievements }}
+        <i class="fas fa-medal"></i>
+        {% widthratio unlocked_ids|length game.total_achievements 100 %}%
+      </span>
+    </div>
+
+    <div
+      class="progress-bar-bg"
+      style="--unlocked: {{ unlocked_ids|length }}; --total: {{ game.total_achievements }};"
+    >
+      <div class="progress-bar-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="ach-list">
+  <div class="ach-header">
+    <h2 class="ach-title">Achievements</h2>
+
+    <div class="ach-controls">
+      <input type="text" id="achFilter" placeholder="Search achievements..." />
+
+      <div class="ach-dropdown">
+        <button id="filterToggle">
+          <img src="{% static 'images/filter.png' %}" alt="Filter" />
+        </button>
+
+        <div id="filterMenu" class="hidden-menu">
+          <select id="sortSelect" class="ach-sort-select">
+            <option value="default">Sort by...</option>
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+          </select>
+          <p>Achievement type:</p>
+          <div id="filterOptions">
+            {% for type in achievement_types %} {% if type %}
+            <label class="filter-option">
+              <input type="checkbox" value="{{ type|lower }}" />
+              {{ type|capfirst }}
+            </label>
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% for ach in achievements %}
+  <a
+    class="ach-item {% if ach.id in unlocked_ids %}unlocked{% else %}locked{% endif %}"
+    href="{% url 'achievement_detail' ach.id %}"
+    data-type="{% for t in ach.type.all %}{{ t.name|lower }} {% endfor %}"
+  >
+    <img
+      class="ach-icon {% if ach.id not in unlocked_ids %}locked-icon{% endif %}"
+      src="{{ ach.icon }}"
+      alt=""
+    />
+
+    <div class="ach-text">
+      <h4>{{ ach.title }}</h4>
+      <p>{{ ach.description }}</p>
+    </div>
+
+    <div class="ach-types-container">
+      {% for t in ach.type.all %}
+      <span class="ach-type">{{ t.name }}</span>
+      {% endfor %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% endblock %} 
+
+{% block extra_js %}
+<script src="{% static 'js/'|add:game.theme|add:'.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,23 @@
+<h1>Vyhledávání her na Steamu</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Zadej název hry..." value="{{ dotaz }}">
+    <button type="submit">Hledat</button>
+</form>
+
+<hr>
+
+{% for hra in vysledky %}
+  <div style="display:flex; gap:10px; margin-bottom:10px;">
+    
+    <img src="{{ hra.image }}" width="120">
+
+    <div>
+        <h3>{{ hra.name }}</h3>
+
+        <a href="{% url 'import_game' hra.appid %}">
+            Importovat hru
+        </a>
+    </div>
+
+{% endfor %}

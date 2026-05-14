@@ -1,0 +1,241 @@
+/* ============================================
+   🚀 THEME: MASS EFFECT LEGENDARY EDITION
+   ============================================ */
+
+body {
+    background: url("/static/images/mass_effect_le_bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #d7e7ff;
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+}
+
+
+/* ============================================
+   🔥 THEME: SEARCH INPUT COLORS
+   ============================================ */
+#achFilter {
+    border: 1px solid rgba(0, 200, 255, 0.45);
+    background: rgba(5, 10, 20, 0.85);
+    color: #d7e7ff;
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+    border-radius: 8px;
+    transition: 0.25s;
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.12);
+}
+
+#achFilter:focus {
+    border-color: rgba(0, 200, 255, 0.9);
+    box-shadow: 0 0 18px rgba(0, 200, 255, 0.35);
+}
+
+
+/* cold futuristic overlay feel */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at top,
+        rgba(0, 200, 255, 0.12),
+        rgba(0, 0, 0, 0.92)
+    );
+    pointer-events: none;
+}
+
+
+/* ============================================
+   🎛️ THEME: FILTER BUTTON
+   ============================================ */
+
+#filterToggle {
+    background: rgba(5, 10, 20, 0.85);
+    border: 1px solid rgba(0, 200, 255, 0.45);
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+    color: #d7e7ff;
+    border-radius: 8px;
+    transition: 0.25s;
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.12);
+}
+
+#filterToggle:hover {
+    border-color: rgba(0, 200, 255, 0.9);
+    box-shadow: 0 0 18px rgba(0, 200, 255, 0.35);
+}
+
+
+/* ============================================
+   📌 THEME: DROPDOWN MENU COLORS
+   ============================================ */
+
+.hidden-menu {
+    background: rgba(3, 8, 15, 0.96);
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    border-radius: 10px;
+    box-shadow: 0 0 16px rgba(0, 200, 255, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.hidden-menu input[type="checkbox"] {
+    accent-color: #00c8ff;
+    filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.25));
+}
+
+
+/* ============================================
+   🏆 THEME: TITLE STYLE
+   ============================================ */
+
+.ach-title {
+    color: #00c8ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(0, 200, 255, 0.35);
+}
+
+
+/* ============================================
+   📦 THEME: LIST CONTAINER LOOK
+   ============================================ */
+
+.ach-list {
+    background: rgba(5, 10, 18, 0.85);
+    border: 1px solid rgba(0, 200, 255, 0.25);
+    border-radius: 14px;
+    box-shadow: 0 0 18px rgba(0, 200, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* scanline overlay only on list */
+.ach-list::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02) 0px,
+        rgba(255,255,255,0.02) 1px,
+        transparent 3px,
+        transparent 6px
+    );
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+
+/* ============================================
+   🎴 THEME: CARD LOOK
+   ============================================ */
+
+.ach-item {
+    background: linear-gradient(90deg, rgba(0, 25, 45, 0.9), rgba(5, 10, 18, 0.95));
+    border: 1px solid rgba(0, 200, 255, 0.22);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.ach-item.locked {
+    filter: saturate(0.5);
+}
+
+.ach-item.unlocked {
+    background: linear-gradient(90deg, rgba(0, 25, 45, 0.9), rgba(5, 10, 18, 0.95));
+    border: 1px solid rgba(0, 200, 255, 0.22);
+    transition: 0.25s ease;
+}
+
+
+/* Mass Effect "panel divider line" */
+.ach-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 200, 255, 0.65),
+        transparent
+    );
+    opacity: 0.35;
+}
+
+
+/* ============================================
+   🏷️ THEME: ACHIEVEMENT TYPE BADGE
+   ============================================ */
+
+.ach-type {
+    color: #00c8ff;
+    background: rgba(0, 20, 35, 0.85);
+    border: 1px solid rgba(0, 200, 255, 0.45);
+    border-radius: 8px;
+
+    box-shadow: 0 0 14px rgba(0, 200, 255, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* ============================================
+   ✨ THEME: CARD HOVER EFFECT
+   ============================================ */
+
+.ach-item:hover {
+    transform: translateX(6px);
+    border-color: rgba(0, 200, 255, 0.75);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.28);
+}
+
+
+/* ============================================
+   🌌 THEME: HOLOGRAM PULSE EFFECT (instead of sweep)
+   ============================================ */
+
+.ach-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 200, 255, 0.12),
+        transparent 70%
+    );
+    opacity: 0;
+    transform: scale(0.85);
+    transition: 0.35s ease;
+    pointer-events: none;
+}
+
+.ach-item:hover::before {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* ============================================
+   🖼️ THEME: ICON LOOK
+   ============================================ */
+
+.ach-icon {
+    background: rgba(0, 20, 35, 0.95);
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.12);
+}
+
+
+/* text */
+.ach-text h4 {
+    color: #eaf4ff;
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.15);
+    letter-spacing: 1px;
+}
+
+.ach-text p {
+    color: rgba(215, 231, 255, 0.75);
+    padding-right: 100px; /* uprav podle šířky .ach-type */
+}

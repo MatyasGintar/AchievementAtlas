@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+
+<img src="{{ achievement.icon }}" alt="">
+<h1>{{ achievement.title }}</h1>
+<p>{{ achievement.type }}</p>
+{{ achievement.guide.guide_text }}
+
+{% endblock %}

@@ -1,0 +1,541 @@
+
+/* 🌌 background */
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1220;
+    color: #e5e7eb;
+    overflow-x: hidden;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    font-family: Arial, sans-serif;
+}
+
+/* 🧭 NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: #0f172a;
+    border-bottom: 1px solid #1f2937;
+}
+
+.nav-left a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #cbd5e1;
+    transition: 0.2s;
+}
+
+.nav-left a:hover {
+    color: #38bdf8;
+}
+
+.logo {
+    font-weight: bold;
+    color: #38bdf8;
+    letter-spacing: 1px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user {
+    color: #94a3b8;
+}
+
+.btn {
+    background: #1f2937;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #38bdf8;
+    color: black;
+}
+
+/* 📦 CONTAINER */
+.container {
+    padding: 20px;
+}
+
+/* 🧠 TITLE */
+.title {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* 🎮 GAME LIST */
+.game-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+/* 🎴 GAME CARD (Hover Reveal efekt) */
+.game-card {
+    background: #111827;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    position: relative;
+    height: 140px;
+    transition: all 0.3s ease;
+}
+
+.game-card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.game-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* 🌑 PRŮHLEDNÝ PANEL S INFORMACEMI */
+.game-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 15px 15px 15px;
+    
+    background: linear-gradient(to top, rgba(11, 18, 32, 1) 0%, rgba(11, 18, 32, 0.8) 60%, transparent 100%);
+    
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* 🎇 EFEKTY PO NAJETÍ MYŠÍ (HOVER) */
+.game-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 25px rgba(56, 189, 248, 0.25);
+    z-index: 10; 
+}
+
+
+.game-card:hover .game-info-overlay {
+    transform: translateY(0); /* Panel ladně vyjede nahoru */
+}
+
+/* ✏️ STYLY TEXTŮ UVNITŘ OVERLAYE */
+.game-info-overlay h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+    
+    /* Pokud je název moc dlouhý, ořízne ho a přidá tři tečky */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.game-meta {
+    font-size: 0.8rem;
+    color: #fbbf24; /* Zlatá barva pro achievementy */
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+}
+
+.game-meta span:last-child {
+    color: #94a3b8; /* Šedá pro rok vydání */
+}
+
+.game-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.genre-badge {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #e2e8f0;
+    backdrop-filter: blur(4px); /* Moderní rozmazání pozadí štítku */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* ============================================
+   ============================================
+   🎮 GAME_DETAIL (BASE CSS)
+   ============================================
+   ============================================ */
+
+/* =========================================
+   🎮 GAME_DETAIL (GLOBAL STRUCTURE)
+========================================= */
+
+.game-card-detail {
+    border-radius: 12px;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+    /* Základní fallbacky */
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.game-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.game-cover {
+    width: 160px; 
+    height: 80px; 
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    filter: brightness(0.6);
+}
+
+.game-header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 550;
+}
+
+.stat-badge {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+/* PRAVÁ ČÁST (Žánry a Vývojáři) */
+.game-meta-blocks {
+    display: flex;
+    gap: 40px; /* Mezera mezi sloupečkem žánrů, vývojářů a vydavatelů */
+}
+
+.detail-label {
+    color: #94a3b8;
+    padding: 0;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Uložení tagů pod sebe do sloupce */
+.detail-tags-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px; 
+}
+
+.genre-tag, 
+.company-tag {
+    color: #c9c9c9;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   📊 PROGRESS BAR (GLOBAL LOGIC)
+========================================= */
+
+.progress-section {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progress-title {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.progress-count {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); 
+    /* Výpočet šířky na základě CSS proměnných */
+    width: calc((var(--unlocked) / var(--total)) * 100%);
+}
+
+
+/* 🧩 ACHIEVEMENTS HEADER (TITLE + CONTROLS) */
+.ach-header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.ach-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 🔍 SEARCH INPUT */
+#achFilter {
+    width: 260px;
+    max-width: 260px;
+
+    padding: 10px 12px;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* 🎛️ FILTER BUTTON */
+
+#filterToggle {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+/* 📌 DROPDOWN FILTER MENU */
+.ach-dropdown {
+    position: relative;
+    margin: 10px 0;
+}
+
+.hidden-menu {
+    display: none;
+    position: absolute;
+    padding: 10px;
+
+    z-index: 10;
+    right: 0;
+    top: 110%;
+    min-width: max-content;
+}
+
+.hidden-menu.show {
+    display: block;
+}
+
+/* 🔻SORT DROPDOWN */
+.ach-sort-select {
+    padding: 10px 12px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* 🔘 ZAROVNÁNÍ CHECKBOXŮ A TEXTU */
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.filter-option:last-child {
+    margin-bottom: 0;
+}
+
+/* 🏆 TITLE STYLE */
+
+.ach-title {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* 🗂️ ACHIEVEMENTS LIST GRID */
+.ach-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.75);
+
+    border-radius: 8px;
+
+    overflow: visible;
+    grid-auto-flow: row;
+}
+
+/* 🎴 ACHIEVEMENT CARD (BASE STRUCTURE) */
+.ach-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 10px;
+
+    text-decoration: none;
+    color: inherit;
+
+    opacity: 1;
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Achievementy, které uživatel nemá, budou zašedlé a méně výrazné */
+.ach-item.locked {
+    filter: saturate(0.5);
+}
+
+.locked-icon {
+    filter: grayscale(50%);
+    opacity: 0.5;
+}
+
+.ach-item.unlocked {
+    filter: saturate(2);
+}
+
+
+/* 🚫 HIDDEN STATE (FILTERING ANIMATION) */
+.ach-item.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+
+    pointer-events: none;
+
+    border: 0;
+    overflow: hidden;
+}
+
+/* 📦 KONTEJNER PRO VÍCE TYPŮ NAJEDNOU */
+.ach-types-container {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    
+    display: flex;
+    gap: 5px; /* Mezera mezi jednotlivými typy (např. Story a Missable) */
+    
+    /* Zabrání tomu, aby se dlouhý seznam typů zalamoval, raději se trochu zmenší */
+    flex-wrap: wrap; 
+    justify-content: flex-end;
+    max-width: 50%; /* Ochrana, aby typy nepřelezly přes název achievementu */
+}
+
+/* 🏷️ ACHIEVEMENT TYPE BADGE */
+.ach-type {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    padding: 3px 7px;
+    border-radius: 4px;
+}
+
+/* 🖼️ ACHIEVEMENT ICON */
+.ach-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    padding: 2px;
+}
+
+/* 📝 ACHIEVEMENT TEXT */
+.ach-text h4 {
+    margin: 0;
+    font-size: 13px;
+}
+
+.ach-game {
+    font-size: 9px;
+    margin-top: 1px;
+}
+
+.ach-text p {
+    margin: 2px 0 0 0;
+    font-size: 11px;
+    padding-top: 3px;
+}
