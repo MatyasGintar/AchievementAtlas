@@ -541,21 +541,109 @@ header {
 }
 
 
+/* ========================================================
+   🚀 ČISTĚ CSS RESPONZIVITA PRO UČITELE (BEZ ZMĚN V HTML)
+   ======================================================== */
+
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column; /* Přeskládá položky pod sebe místo vedle sebe */
-        align-items: center;    /* Zarovná je na střed */
-        gap: 15px;              /* Přidá mezeru mezi sekce */
-    }
     
-    .nav-right {
-        margin-right: 0;        /* Zrušíme marginy z PC verze */
-        flex-wrap: wrap;        /* Dovolí tlačítkům odskočit na další řádek */
-        justify-content: center;
+    /* 1. NAVBAR: Místo složitého hamburgeru poskládáme vše na střed pod sebe */
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        text-align: center;
     }
 
-    img {
+    /* Zarovnání loga a odkazů (Games, Guides) */
+    .nav-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Zrušíme fixní levý okraj u odkazů z PC verze, aby byly přesně na středu */
+    .nav-left a {
+        margin-left: 0 !important;
+    }
+
+    /* Vycentrování přihlášení / profilu */
+    .nav-right {
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+
+
+    /* 2. HLAVNÍ SEZNAM HER: Změna z 5 sloupců na 2 sloupce vedle sebe */
+    .game-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+    }
+
+    /* Úprava výšky karet her, aby na mobilu obrázky vypadaly dobře */
+    .game-card, .game-card img {
+        height: 120px;
+    }
+
+
+    /* 3. DETAIL HRY (game_detail.html): Přeskládání informací pod sebe */
+    .game-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .game-header-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* Žánry, Vývojáři a Vydavatelé se dají pod sebe, zarovnané doleva */
+    .game-meta-blocks {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .detail-item {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .detail-tags-column {
+        align-items: flex-start;
+    }
+
+    .detail-label {
+        width: 100%;
+        text-align: left;
+    }
+
+
+    /* 4. SEZNAM ACHIEVEMENTŮ: Na mobilu dáme jen 1 sloupec, aby byl text čitelný */
+    .ach-list {
+        grid-template-columns: 1fr !important;
+        padding: 10px;
+    }
+
+    /* Vyhledávač a řazení achievementů pod sebe */
+    .ach-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .ach-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    #achFilter {
+        width: 100%;
         max-width: 100%;
-        height: auto;
     }
 }
