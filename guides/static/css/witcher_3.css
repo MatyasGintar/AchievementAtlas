@@ -28,6 +28,30 @@ body::before {
    ⚔️ THEME: WITCHER 3 (SPECIFIC)
    ============================================ */
 
+.logo {
+    color: #ff000099;
+}
+
+.btn {
+    background: #292727;
+    border: 1px solid rgba(255, 0, 0, 0.25);
+}
+
+.btn:hover {
+    background: rgba(255, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+}
+
+.navbar {
+    background: rgba(12, 0, 0, 0.893);
+    border: 1px solid rgba(255, 0, 0, 0.35);
+    border-radius: 12px; 
+}
+
+.nav-left a:hover {
+    color: rgb(201, 0, 0);
+}
+
 /* Karty a kontejnery */
 .game-card-detail, 
 .ach-list {

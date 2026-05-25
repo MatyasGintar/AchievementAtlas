@@ -27,12 +27,8 @@ header {
 .nav-left a {
     margin-left: 15px;
     text-decoration: none;
-    color: #cbd5e1;
+    color: #94a3b8;
     transition: 0.2s;
-}
-
-.nav-left a:hover {
-    color: #38bdf8;
 }
 
 .logo {
@@ -152,9 +148,11 @@ header {
     text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
     
     /* Pokud je název moc dlouhý, ořízne ho a přidá tři tečky */
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Počet řádků před zobrazením tří teček */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal; /* Povolí zalamování (přepíše tvůj původní nowrap) */
 }
 
 .game-meta {
@@ -289,6 +287,7 @@ header {
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 /* =========================================
