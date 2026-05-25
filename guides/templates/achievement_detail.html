@@ -1,11 +1,25 @@
 {% extends "layout.html" %}
 {% load static %}
 
-{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/'|add:achievement.game.theme|add:'.css' %}" />
+{% endblock %}
 
+{% block content %}
+<div class="ach-list">
 <img src="{{ achievement.icon }}" alt="">
 <h1>{{ achievement.title }}</h1>
-<p>{{ achievement.type }}</p>
+
+
+<div>
+    {% for t in achievement.type.all %}
+        <span class="ach-type">
+            {{ t.name }}
+        </span>
+    {% endfor %}
+</div>
+</div>
+
 {{ achievement.guide.guide_text }}
 
 {% endblock %}

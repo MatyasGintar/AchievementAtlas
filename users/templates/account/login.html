@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% load account %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/auth_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="moje-vlastni-prihlaseni">
+    <h1>Vítej zpět na AchievementAtlas!</h1>
+    
+    <form class="auth-form" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        
+        <button class="btn-submit" type="submit">Přihlásit se</button>
+    </form>
+    
+    <div class="auth-links">
+        <a href="{% url 'account_reset_password' %}">Zapomněli jste heslo?</a>
+        <a href="{{ signup_url }}">Vytvořit nový účet</a>
+    </div>
+</div>
+{% endblock %}

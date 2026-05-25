@@ -265,6 +265,7 @@ header {
     font-size: 0.75rem;
     text-transform: uppercase;
     font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .detail-item {
@@ -537,4 +538,24 @@ header {
     margin: 2px 0 0 0;
     font-size: 11px;
     padding-top: 3px;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Přeskládá položky pod sebe místo vedle sebe */
+        align-items: center;    /* Zarovná je na střed */
+        gap: 15px;              /* Přidá mezeru mezi sekce */
+    }
+    
+    .nav-right {
+        margin-right: 0;        /* Zrušíme marginy z PC verze */
+        flex-wrap: wrap;        /* Dovolí tlačítkům odskočit na další řádek */
+        justify-content: center;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
 }

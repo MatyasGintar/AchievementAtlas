@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load socialaccount %}
+
+{% block extra_css %}
+    
+{% endblock %}
+
+{% block content %}
+<div class="profile-wrapper">
+    <div class="profile-card">
+        <div class="avatar-container">
+            {% if user.avatar_url %}
+                <img src="{{ user.avatar_url }}" alt="Avatar" class="profile-avatar">
+            {% else %}
+                <img src="{% static 'images/default_avatar.png' %}" alt="Default Avatar" class="profile-avatar">
+            {% endif %}
+        </div>
+        
+        <h2>{% if user.steam_name %}{{ user.steam_name }}{% else %}{{ user.username }}{% endif %}</h2>
+        <p class="email-info">{{ user.email }}</p>
+        <p class="stat-info">Odemčeno achievementů: <strong>{{ user.unlocked_achievements.count }}</strong></p>
+    </div>
+
+    <div class="connections-card">
+        <h3>Propojené herní účty</h3>
+        <p>Propoj si své účty a synchronizuj své herní úspěchy na jednom místě.</p>
+
+        <div class="platforms-list">
+            <div class="platform-item steam {% if user.steam_id %}connected{% endif %}">
+                <div class="platform-meta">
+                    <i class="fab fa-steam platform-icon"></i>
+                    <div>
+                        <h4>Steam</h4>
+                        <p class="status-text">{% if user.steam_id %}Propojeno jako {{ user.steam_name }}{% else %}Nepropojeno{% endif %}</p>
+                    </div>
+                </div>
+                <div class="platform-action">
+                    {% if user.steam_id %}
+                    <form action="{% url 'socialaccount_connections' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-disconnect">Odpojit</button>
+                    </form>
+                    {% else %}
+                    <form action="{% provider_login_url 'steam' process='connect' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-connect">Propojit účet</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

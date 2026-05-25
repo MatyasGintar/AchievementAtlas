@@ -1,0 +1,27 @@
+/* auth-styles.css */
+.moje-vlastni-prihlaseni {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #1b2838;
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+}
+
+/* Tímto zacílíš na inputy vygenerované Djangem (allauthem) */
+.auth-form p input {
+    width: 100%;
+    padding: 12px;
+    background-color: #2a475e;
+    border: 1px solid #c7d5e0;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Ostylování popisků (E-mail, Heslo) nad inputy */
+.auth-form p label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #66c0f4;
+}

@@ -1,11 +1,16 @@
 {% extends "layout.html" %}
 {% load account %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/auth_style.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="auth-wrapper" style="max-width: 400px; margin: 50px auto; padding: 30px; background: #1b2838; border-radius: 8px; color: white;">
-    <h2 style="margin-top: 0; color: #66c0f4;">Přihlášení</h2>
+    <h2 style="margin-top: 0; color: #66c0f4;">Registrace účtu</h2>
     
-    <form class="login-form" method="POST" action="{% url 'account_login' %}">
+    <form class="signup-form" method="POST" action="{% url 'account_signup' %}">
         {% csrf_token %}
         
         {{ form.as_p }}
@@ -15,12 +20,12 @@
         {% endif %}
         
         <button class="btn" type="submit" style="width: 100%; padding: 10px; margin-top: 15px; background: #66c0f4; border: none; color: #1b2838; font-weight: bold; cursor: pointer; border-radius: 4px;">
-            Přihlásit se
+            Vytvořit účet
         </button>
     </form>
     
     <p style="margin-top: 20px; font-size: 0.9rem; text-align: center;">
-        Nemáte ještě účet? <a href="{{ signup_url }}" style="color: #66c0f4;">Zaregistrujte se</a>.
+        Už máte účet? <a href="{{ login_url }}" style="color: #66c0f4;">Přihlaste se</a>.
     </p>
 </div>
 {% endblock %}
