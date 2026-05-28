@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Game, Achievement, Guide
 from users.models import UserAchievement
@@ -9,8 +9,25 @@ def games(request):
     games = Game.objects.all()
     return render(request, "games.html", {"games": games})
 
-def achievement_detail(request, achievement_id):
-    achievement = get_object_or_404(Achievement, id=achievement_id)
+def achievement_detail(request, game_slug, achievement_slug):
+    # Najde achievement, který má správný slug A ZÁROVEŇ patří k hře se správným slugem
+    achievement = get_object_or_404(Achievement, slug=achievement_slug, game__slug=game_slug)
+    
+    if request.method == "POST":
+        guide_text = request.POST.get("guide_text")
+        difficulty = request.POST.get("difficulty", "Medium")
+        
+        if guide_text:
+            Guide.objects.update_or_create(
+                achievement=achievement,
+                defaults={
+                    "guide_text": guide_text,
+                    "difficulty": difficulty
+                }
+            )
+            # Aktualizovaný redirect s novými parametry
+            return redirect("achievement_detail", game_slug=game_slug, achievement_slug=achievement_slug)
+
     return render(request, "achievement_detail.html", {"achievement": achievement})
 
 def import_game(request, appid):

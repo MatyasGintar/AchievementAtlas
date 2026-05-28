@@ -67,6 +67,15 @@ class Achievement(models.Model):
     description = models.TextField(blank=True)
     icon = models.URLField(blank=True, null=True)
     type = models.ManyToManyField(AchievementType, related_name="achievements", blank=True)
+    
+    # NOVÉ POLE:
+    slug = models.SlugField(max_length=255, blank=True)
+
+    # NOVÁ METODA: Automatické vytvoření slugu při uložení
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.game.name} - {self.title}"

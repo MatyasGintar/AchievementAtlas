@@ -2,6 +2,7 @@ import requests
 from django.conf import settings
 from .models import Game, Achievement, Company, Genre
 from users.models import UserAchievement
+from django.utils.text import slugify
 
 def get_game_achievements(appid):
     url = "https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/"
@@ -83,13 +84,18 @@ def import_steam_game(appid):
     game.save()
 
     for ach in achievements:
+        title = ach.get("displayName", ach["name"])
+        # NOVÉ: Tady se konečně generuje ten slug!
+        ach_slug = slugify(title)
+        
         Achievement.objects.get_or_create(
             game=game,
             api_name=ach["name"],
             defaults={
-                "title": ach.get("displayName", ach["name"]),
+                "title": title,
                 "description": ach.get("description", ""),
-                "icon": ach.get("icon", "")
+                "icon": ach.get("icon", ""),
+                "slug": ach_slug # Teď už se to správně uloží!
             }
         )
 

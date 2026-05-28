@@ -33,7 +33,7 @@ body::before {
 }
 
 .btn {
-    background: #292727;
+    background: rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 0, 0, 0.25);
 }
 
@@ -54,7 +54,8 @@ body::before {
 
 /* Karty a kontejnery */
 .game-card-detail, 
-.ach-list {
+.ach-list,
+.guide-container {
     background: rgba(12, 0, 0, 0.75); 
     border: 1px solid rgba(255, 0, 0, 0.35);
     border-radius: 12px;
@@ -148,7 +149,8 @@ body::before {
    🏆 THEME: TITLE STYLE
    ============================================ */
 
-.ach-title {
+.ach-title,
+.ach-title-guide {
     color: #ff2b2bad;
 }
 
@@ -170,7 +172,8 @@ body::before {
    🏷️ THEME: ACHIEVEMENT TYPE BADGE
    ============================================ */
 
-.ach-type {
+.ach-type,
+.ach-type-guide {
     color: #ff2b2b;
     background: rgba(10, 0, 0, 0.75);
     border: 1px solid rgba(255, 0, 0, 0.4);
@@ -216,7 +219,8 @@ body::before {
    🖼️ THEME: ICON LOOK
    ============================================ */
 
-.ach-icon {
+.ach-icon, 
+.ach-icon-guide {
     background: #0b0000;
     border: 1px solid rgba(255, 0, 0, 0.35);
 }
@@ -228,4 +232,33 @@ body::before {
 
 .ach-text p {
     color: #b5a3a3;
+}
+
+
+.achievement-header {
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.modal-content {
+    background: rgba(12, 0, 0, 0.95);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+}
+
+.close-btn {
+    color: #ad0a0a;
+}
+
+.close-btn:hover {
+    color: #ff2b2b;
+}
+
+.modal-content textarea {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 0, 0, 0.448);
+}
+
+.modal-content textarea:focus {
+    border-color: rgb(255, 0, 0);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }

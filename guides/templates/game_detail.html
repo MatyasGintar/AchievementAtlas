@@ -116,9 +116,9 @@
 
   {% for ach in achievements %}
   <a
-    class="ach-item {% if ach.id in unlocked_ids %}unlocked{% else %}locked{% endif %}"
-    href="{% url 'achievement_detail' ach.id %}"
-    data-type="{% for t in ach.type.all %}{{ t.name|lower }} {% endfor %}"
+  class="ach-item {% if ach.id in unlocked_ids %}unlocked{% else %}locked{% endif %}"
+  href="{% url 'achievement_detail' game.slug ach.slug %}"
+  data-type="{% for t in ach.type.all %}{{ t.name|lower }} {% endfor %}"
   >
     <img
       class="ach-icon {% if ach.id not in unlocked_ids %}locked-icon{% endif %}"

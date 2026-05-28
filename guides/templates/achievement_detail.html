@@ -6,20 +6,84 @@
 {% endblock %}
 
 {% block content %}
-<div class="ach-list">
-<img src="{{ achievement.icon }}" alt="">
-<h1>{{ achievement.title }}</h1>
+<div class="guide-container">
+<div class="achievement-header">
+    
+    <div class="ach-main-row">
+        <img src="{{ achievement.icon }}" alt="{{ achievement.title }}" class="ach-icon-guide">
+        
+        <div class="ach-text-block">
+            <h1 class="ach-title-guide">{{ achievement.title }}</h1>
+            <p class="ach-description">{{ achievement.description }}</p>
+        </div>
+    </div>
+    
+    <div class="ach-bottom-row">
+        
+        <div class="ach-types">
+            {% for t in achievement.type.all %}
+                <span class="ach-type-guide">
+                    {{ t.name }}
+                </span>
+            {% endfor %}
+        </div>
 
+        <button id="openGuideModal" class="btn">Add Guide</button>
+        
+    </div>
 
-<div>
-    {% for t in achievement.type.all %}
-        <span class="ach-type">
-            {{ t.name }}
-        </span>
-    {% endfor %}
 </div>
+
+<span class="achievement-guide">{{ achievement.guide.guide_text }}</span>
 </div>
 
-{{ achievement.guide.guide_text }}
+<div id="guideModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" id="closeGuideModal">&times;</span>
+        
+        <h2 class="ach-title" style="font-size: 32px; line-height: normal; margin-bottom: 15px;">Přidat návod</h2>
+        
+        <form method="POST" action="{% url 'achievement_detail' achievement.game.slug achievement.slug %}">
+            {% csrf_token %}
+            
+            <label for="difficulty" style="color: #94a3b8; font-size: 0.9rem; display: block; margin-bottom: 5px;">
+                Zvol obtížnost:
+            </label>
+            <select name="difficulty" id="difficulty" class="ach-sort-select" style="width: 100%; margin-bottom: 15px;">
+                <option value="Easy">Easy</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            
+            <textarea name="guide_text" placeholder="Zde popiš, jak tento achievement získat..." required></textarea>
+            
+            <button type="submit" class="btn" style="width: 100%;">Uložit návod</button>
+        </form>
+    </div>
+</div>
 
+
+<script>
+    // Získání elementů
+    const modal = document.getElementById("guideModal");
+    const openBtn = document.getElementById("openGuideModal");
+    const closeBtn = document.getElementById("closeGuideModal");
+
+    // Otevření okna po kliknutí na tlačítko (změníme display na flex)
+    openBtn.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    // Zavření okna křížkem
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Zavření okna kliknutím kamkoliv mimo samotné okno
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 {% endblock %}
